@@ -1,0 +1,589 @@
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> desc emp1
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(38)
+ ENAME                                              VARCHAR2(10)
+ ESAL                                               NUMBER(5)
+ EADD                                               VARCHAR2(10)
+ EPHO                                               NUMBER(10)
+
+SQL> desc emp2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(38)
+ ENAME                                              VARCHAR2(10)
+ EADD                                               VARCHAR2(10)
+ ESAL                                               NUMBER(10)
+
+SQL> insert into emp1 values (&eid,'&ename',&esal,'&eadd',&epho)
+  2  ;
+Enter value for eid: 1
+Enter value for ename: hema
+Enter value for esal: 20000
+Enter value for eadd: mpl
+Enter value for epho: 6381236238
+old   1: insert into emp1 values (&eid,'&ename',&esal,'&eadd',&epho)
+new   1: insert into emp1 values (1,'hema',20000,'mpl',6381236238)
+
+1 row created.
+ 
+SQL> /
+Enter value for eid: 2
+Enter value for ename: likku
+Enter value for esal: 30000
+Enter value for eadd: krl
+Enter value for epho: 7981271611
+old   1: insert into emp1 values (&eid,'&ename',&esal,'&eadd',&epho)
+new   1: insert into emp1 values (2,'likku',30000,'krl',7981271611)
+
+1 row created.
+
+SQL> /
+Enter value for eid: 3
+Enter value for ename: giri
+Enter value for esal: 40000
+Enter value for eadd: ap
+Enter value for epho: 9392643418
+old   1: insert into emp1 values (&eid,'&ename',&esal,'&eadd',&epho)
+new   1: insert into emp1 values (3,'giri',40000,'ap',9392643418)
+
+1 row created.
+
+SQL> /
+Enter value for eid: 5
+Enter value for ename: hari
+Enter value for esal: 50000
+Enter value for eadd: gdb
+Enter value for epho: 9353530806
+old   1: insert into emp1 values (&eid,'&ename',&esal,'&eadd',&epho)
+new   1: insert into emp1 values (5,'hari',50000,'gdb',9353530806)
+
+1 row created.
+
+SQL> select*from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         5 hari            50000 gdb        9353530806
+
+SQL> /
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         5 hari            50000 gdb        9353530806
+
+SQL> insert into emp1 values (&eid,'&ename',&esal,'&eadd',&epho);
+Enter value for eid: 4
+Enter value for ename: nalu
+Enter value for esal: 60000
+Enter value for eadd: hyd
+Enter value for epho: 9293511957
+old   1: insert into emp1 values (&eid,'&ename',&esal,'&eadd',&epho)
+new   1: insert into emp1 values (4,'nalu',60000,'hyd',9293511957)
+
+1 row created.
+
+SQL> select* from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         5 hari            50000 gdb        9353530806
+         4 nalu            60000 hyd        9293511957
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select eid,esal from emp1;
+
+       EID       ESAL
+---------- ----------
+         1      20000
+         2      30000
+         3      40000
+         5      50000
+         4      60000
+
+SQL> select eid+10 from emp1;
+
+    EID+10
+----------
+        11
+        12
+        13
+        15
+        14
+
+SQL> select esal+1000 from emp1;
+
+ ESAL+1000
+----------
+     21000
+     31000
+     41000
+     51000
+     61000
+
+SQL> select * from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         5 hari            50000 gdb        9353530806
+         4 nalu            60000 hyd        9293511957
+
+SQL> select eid as eno from emp1;
+
+       ENO
+----------
+         1
+         2
+         3
+         5
+         4
+
+SQL> select * from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         5 hari            50000 gdb        9353530806
+         4 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where eid=4;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         4 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where esal=60000;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         4 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where ename='hema';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+
+SQL> update emp1 set eid=4 where ename='hari';
+
+1 row updated.
+
+SQL> select* from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         4 nalu            60000 hyd        9293511957
+
+SQL> update emp1 set eid=5 where ename='nalu';
+
+1 row updated.
+
+SQL> select* from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+
+SQL> /
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+
+SQL> insert into emp1 values(6,'kavya',10000,'gutr',8976567856);
+
+1 row created.
+
+SQL> select * from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+         6 kavya           10000 gutr       8976567856
+
+6 rows selected.
+
+SQL> delete from emp1 where eid=6;
+
+1 row deleted.
+
+SQL> select * from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+
+SQL> commit;
+
+Commit complete.
+
+SQL> delete from emp1;
+
+5 rows deleted.
+
+SQL> select * from emp1;
+
+no rows selected
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+
+SQL> insert into emp1 values (6,'sneha',1000,'dun',7456789643);
+
+1 row created.
+
+SQL> select * from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+         6 sneha            1000 dun        7456789643
+
+6 rows selected.
+
+SQL> delete from emp1;
+
+6 rows deleted.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where eid=1 and ename='hema';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+
+SQL> select * from emp1 where eid=1 and ename='latha';
+
+no rows selected
+
+SQL> select * from emp1 where eid=1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+
+SQL> select * from emp1 where eid=1 or ename='nalu';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         5 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where not eid=1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where not eid=0 ;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+
+
+SQL> select * from emp1 where esal=50000 or ename='hema';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         4 hari            50000 gdb        9353530806
+
+
+SQL> select * from emp1 where eid=5 and ename='nalu';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         5 nalu            60000 hyd        9293511957
+
+
+
+SQL> select * from emp1 where eid between 1 and 3;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+
+SQL> select * from emp1 where eid=1 and esal=2000;
+
+no rows selected
+
+SQL> select * from emp1 where eid=1 and esal=20000;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+
+SQL> select * from emp1 where eid between 1and 2;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+
+SQL> select * from emp1 where eid=1 or esal=30000;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+
+SQL> select * from emp1 where eid in (1 ,3);
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         3 giri            40000 ap         9392643418
+
+SQL> select * from emp1 where eid=1 or esal=60000;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         5 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where eid in(1,4);
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         4 hari            50000 gdb        9353530806
+
+SQL> select
+  2  * from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+
+
+
+SQL> select * from emp1 where ename  like 'n%';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         5 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where ename like '-a%';
+
+no rows selected
+
+SQL> select * from emp1 where ename like '_a%';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+
+SQL> select* from emp1 where ename like'__e%';
+
+no rows selected
+
+
+
+SQL> select * from emp1 where ename like '%a';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+
+SQL> select * from emp1 where ename like '%u';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         2 likku           30000 krl        7981271611
+         5 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where ename like'%u_';
+
+no rows selected
+
+SQL> select * from emp1 where ename like'a%_';
+
+no rows selected
+
+SQL> select * from emp1;
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         2 likku           30000 krl        7981271611
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+         5 nalu            60000 hyd        9293511957
+
+
+
+SQL> select * from emp1 where ename like 'h%';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         4 hari            50000 gdb        9353530806
+
+SQL> select * from emp1 where ename like '%h';
+
+no rows selected
+
+SQL> select * from emp1 where ename like '%a';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+
+SQL> select * from emp1 where ename like 'a_%';
+
+no rows selected
+
+SQL> select * from emp1 where ename like 'e_%';
+
+no rows selected
+
+SQL> select * from emp1 where ename like 'h_%';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+         4 hari            50000 gdb        9353530806
+
+SQL> select * from emp1 where ename like '_%h';
+
+no rows selected
+
+SQL> select * from emp1 where ename like '_%a';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+
+SQL> select * from emp1 where ename like '%_a';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+
+SQL> select * from emp1 where ename like '%__a';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+
+SQL> select * from emp1 where ename like '%_l_';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         5 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where ename like '%_e_';
+
+no rows selected
+
+SQL> select * from emp1 where ename like '%_m_';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         1 hema            20000 mpl        6381236238
+
+SQL> select * from emp1 where ename like '%_r_';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         3 giri            40000 ap         9392643418
+         4 hari            50000 gdb        9353530806
+
+SQL> select * from emp1 where ename like '%_l_';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         5 nalu            60000 hyd        9293511957
+
+SQL> select * from emp1 where ename like '%_k_';
+
+       EID ENAME            ESAL EADD             EPHO
+---------- ---------- ---------- ---------- ----------
+         2 likku           30000 krl        7981271611
+
+SQL>
